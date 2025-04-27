@@ -1,12 +1,5 @@
 # .gitignore
 
-
-
-# Ignore models
-/subject_models/
-
-# Ignore python artifacts
-*.pth
 __pycache__/
 *.pyc
 *.pyo
