@@ -1,8 +1,6 @@
 # .gitignore
 
-# Ignore data
-/data/
-bidmc_csv/
+
 
 # Ignore models
 /subject_models/
