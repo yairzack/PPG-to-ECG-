@@ -1,0 +1,22 @@
+# .gitignore
+
+# Ignore data
+/data/
+bidmc_csv/
+
+# Ignore models
+/subject_models/
+
+# Ignore python artifacts
+*.pth
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Ignore virtual environments
+.venv/
+env/
