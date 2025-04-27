@@ -26,9 +26,17 @@ PPG2ECG-Reconstruction/
 ├── README.md                     # Project overview
 ├── requirements.txt              # Python dependencies
 └── .gitignore                    # Ignore large or unnecessary files
-
+```
 ## How to Use
 
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
+   
+2. Train model per subject and output wieghts to target folder
+   ```bash
+   python scripts/train_subjects.py
+3. Evaluate models and plot performance
+   ```bash
+   python scripts/evaluate_subjects.py
+
