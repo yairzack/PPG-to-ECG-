@@ -3,6 +3,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
+from models.customLosses import RelMSE, RelMAL, CrossCorrelationShiftLoss, SpectralMSELoss
 
 class DownSampleBlock(nn.Module):
     def __init__(self, in_channels, out_channels):
@@ -148,11 +149,25 @@ def create_windows(data, window_length, stride):
 
 def ECG2PPGps_loss(y_pred, y_true):
     mse_loss = nn.MSELoss()(y_pred, y_true)
+    # mseCriterion = RelMSE()
+    # mse_loss = mseCriterion(y_pred, y_true)  # tesing use of relative MSE loss instead of absolute MSE loss
+    # print(y_pred.shape)
     mal_loss = torch.max(torch.abs(y_pred - y_true))
+    # malCriterion = RelMAL()
+    # mal_loss = malCriterion(y_pred, y_true)  # tesing use of relative MAL loss instead of absolute MAL loss
+
+    # testing the addition of cross-correlation and spectral losses
+    crossCorrCriterion = CrossCorrelationShiftLoss()
+    crossCorr_loss = crossCorrCriterion(y_pred, y_true)
+    spectralCriterion = SpectralMSELoss()
+    spectral_loss = spectralCriterion(y_pred, y_true)
+
     y_true_flat = y_true.view(-1)
     y_pred_flat = y_pred.view(-1)
     r_matrix = torch.corrcoef(torch.stack([y_true_flat, y_pred_flat]))
     r = r_matrix[0, 1]
     r_loss = 1 - torch.abs(r)
+    # r_loss = 1 - r # testing removal of abs from correlation component of the loss
     total_loss = mse_loss + mal_loss + r_loss
+    # total_loss = mse_loss + mal_loss + r_loss + spectral_loss
     return total_loss
