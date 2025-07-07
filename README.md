@@ -8,18 +8,34 @@ This repository implements subject-specific deep learning models to reconstruct 
 ```text
 PPG2ECG-Reconstruction/
 │
-├── models/
-│   └── ecg2ppg_model.py         # Model definition + loss + preprocessing
+├── bidmc_clustering.ipynb
+│
+├── Wnet_depth_width.ipynb
+│
+├── vitaldb_preproces_test.ipynb
+│
+├── vitaldb_arythmia_attempt.ipynb
+│
+├── phsyionet2015_reconstruction.ipynb
+│
+├── LSTM_pretrain_test.ipynb
+│
+├── models/ # Model definition + loss + preprocessing
+│   └── ecg2ppg_model.py         
+│   └── ecg2ppg_LSTM_after.py         
+│   └── ecg2ppg_model_6by2.py        
+│   └── ecg2ppg_model_depth.py         
+│   └── ecg2ppg_model_width.py       
 │
 ├── utils/
 │   └── eval_metrics.py          # Evaluation metrics (DTW, Pearson, RMSE)
 │
 ├── scripts/
 │   ├── train_subjects.py         # Train one model per subject
+│   ├── train_multiSubject.py     # Train one model for multiple subject
 │   ├── evaluate_subjects.py      # Evaluate and plot metrics
 │   └── plot_examples.py          # Visualize examples
 │
-├── subject_models/               # Saved models and evaluations (created after training)
 │
 ├── data/                         # (Optional) Folder for raw CSVs
 │
@@ -27,16 +43,5 @@ PPG2ECG-Reconstruction/
 ├── requirements.txt              # Python dependencies
 └── .gitignore                    # Ignore large or unnecessary files
 ```
-## How to Use
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   
-2. Train model per subject and output wieghts to target folder
-   ```bash
-   python scripts/train_subjects.py
-3. Evaluate models and plot performance
-   ```bash
-   python scripts/evaluate_subjects.py
 
