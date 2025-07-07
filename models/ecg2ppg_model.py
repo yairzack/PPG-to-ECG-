@@ -157,10 +157,10 @@ def ECG2PPGps_loss(y_pred, y_true):
     # mal_loss = malCriterion(y_pred, y_true)  # tesing use of relative MAL loss instead of absolute MAL loss
 
     # testing the addition of cross-correlation and spectral losses
-    crossCorrCriterion = CrossCorrelationShiftLoss()
-    crossCorr_loss = crossCorrCriterion(y_pred, y_true)
-    spectralCriterion = SpectralMSELoss()
-    spectral_loss = spectralCriterion(y_pred, y_true)
+    #crossCorrCriterion = CrossCorrelationShiftLoss()
+    #crossCorr_loss = crossCorrCriterion(y_pred, y_true)
+    #spectralCriterion = SpectralMSELoss()
+    #spectral_loss = spectralCriterion(y_pred, y_true)
 
     y_true_flat = y_true.view(-1)
     y_pred_flat = y_pred.view(-1)
